@@ -1,7 +1,7 @@
 import os
 import shutil
 from pathlib import Path
-def mover_src(caminho):
+def mover(caminho):
    try:
       arquivos = os.listdir(caminho)
    except FileNotFoundError:
@@ -13,7 +13,7 @@ def mover_src(caminho):
       if os.path.isfile(caminho_arquivo):
          extensao = Path(caminho_arquivo).suffix
          print(f"Arquivo: {arquivo} | Extensão: {extensao}")
-         destino = Path(f'{caminho}/src/{extensao[1:]}/{arquivo}')
+         destino = Path(f'{caminho}/{extensao[1:]}/{arquivo}')
          if not os.path.exists(destino):
             shutil.move(caminho_arquivo, destino)
          else:
@@ -24,4 +24,3 @@ def mover_src(caminho):
                contador += 1
                novo_destino = f'{nome}_{contador}{extensao}'
             shutil.move(caminho_arquivo, novo_destino)
-
